@@ -1,0 +1,22 @@
+user_id,username,user_dob,user_gender,user_phone,user_address,user_email,user_password,role_id,dept_id
+1,Khin,2000-08-14,female,09123,Mawlamyine,khin@gmail.com,123,1,1
+49,Hazel,2000-08-25,female,09500099,"mya kan thar 2nd street, ygn",hazel@gmail.com,hazel,8,1
+50,Zin,2000-08-01,female,09899822,kamayut,zin@gmail.com,zin,8,1
+51,Zen,1999-01-01,male,09278822,"Kyouk Myoung",zen@gmail.com,zen,8,27
+52,Jorge,1999-02-02,male,092277333,"Hlaing ",jorge@gmail.com,jorge,8,27
+53,"Axel ",1998-08-08,male,092223881,sagaing,aung@gmail.com,aung,8,27
+54,Jennie,1995-01-01,female,09886543,"Hlaing, yangon",jennie@gmail.com,jennie,8,28
+55,Rose,1994-03-03,female,09335789,"Myaynigone, yangon",rose@gmail.com,rose,8,28
+56,Irene,1994-02-02,female,09253744,"Shwe pyi thar, yangon",irene@gmail.com,irene,8,28
+57,Liam,1992-02-02,male,09284442,Taunggyi,liam@gmail.com,liam,8,29
+58,Oliver,1991-05-05,female,09278422,"sanchaung, yangon",oliver@gmail.com,oliver,8,29
+59,Lucas,1990-04-07,male,09232442,"Kamayut, yangon",lucas@gmail.com,lucas,8,29
+60,Emma,1990-01-28,female,097728473,"Sanchaung, yangon",emma@gmail.com,emma,8,30
+61,Lily,1992-08-08,female,092244677,"Hledan, yangon",lily@gmail.com,lily,8,30
+62,Melody,1989-02-28,female,096652822,"Shwe pyi thar, yangon",melody@gmail.com,melody,8,30
+63,John,1985-01-26,male,096833556,"Ahlone, yangon",john@gmail.com,john,2,1
+64,Luke,1984-05-22,male,0934793895,"Insein, yangon",luke@gmail.com,luke,7,1
+65,Thomas,1983-06-29,male,095487244,"ahlone, yangon",thomas@gmail.com,thomas,7,27
+66,Andrew,1982-08-30,male,09726563,"North dagon, yangon",andrew@gmail.com,andrew,7,28
+67,Roman,1980-03-19,male,09335338,"Hlaing, yangon",roman@gmail.com,roman,7,29
+68,Austin,1983-04-28,male,09885378,"Kabaraye, yangon.",austin@gmail.com,austin,7,30

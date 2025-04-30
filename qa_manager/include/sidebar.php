@@ -29,6 +29,12 @@
             </li>
 
             <li class="nav-item">
+                <a class="nav-link" href="user.php">
+                    <i class="fas fa-user"></i>
+                    <span>Staff</span></a>
+            </li>
+            
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsecomment"
                    aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-comment"></i>

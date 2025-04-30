@@ -1,11 +1,16 @@
 
                 <?php 
+                   
+
                     if (isset($_SESSION)) {
 
                         $user_id  = $_SESSION['user_id'];
                         $username = $_SESSION['username'];
-                            
+
+                        
                     }
+                    
+                    
 
                     if (isset($_POST['create_idea'])) {
                         
@@ -22,63 +27,65 @@
                         }
 
                         else{
+                            
+                                $the_user_id = $user_id;
 
-                            $the_user_id = $user_id;
+                                $the_academic_id = $_POST['academic_name'];
+                                $the_idea_checkbox = $_POST['idea_checkbox'];
+                                $the_category_id   = $_POST['category_name'];
+    
+                                //////////attachmetn code
+    
+                                $the_idea_attachment=$_FILES['idea_attachment']['name'];
+                                $the_idea_attachment_temp = $_FILES['idea_attachment']['tmp_name'];
+    
+                                move_uploaded_file($the_idea_attachment_temp,"img/$the_idea_attachment");
+                              
+    
+                                //attachemtn code kyn
+                                $the_idea_content = mysqli_real_escape_string($connection, $_POST['idea_content']);
+    
+    
+                                // closure date check
+                                $academic_query = "SELECT * FROM academic_year WHERE academic_id = {$the_academic_id}";
+                                $select_academic_query = mysqli_query($connection, $academic_query);
+                                $row = mysqli_fetch_array($select_academic_query);
+    
+                                    $academic_start_date = strtotime($row['start_date']);
+                                    $academic_closure_date = strtotime($row['closure_date']);
+                                    $academic_final_closure_date = strtotime($row['final_closure_date']);
+                                    $today_date = strtotime("now");
+    
+                                    if ($today_date >= $academic_start_date && $today_date <= $academic_closure_date){
+    
+                                        $query = "INSERT INTO ideas(idea_checkbox, idea_content, idea_attachment, user_id, category_id, academic_id, idea_date) VALUES ('{$the_idea_checkbox}', '{$the_idea_content}', '{$the_idea_attachment}', '{$the_user_id}', '{$the_category_id}','{$the_academic_id}',now() )";
+                                        $create_post_query = mysqli_query($connection, $query);
+    
+                                        if (!$create_post_query) {
+    
+                                            die("QUERY FAILED" . mysqli_error($connection));
 
-                            $the_academic_id = $_POST['academic_name'];
-                            $the_idea_checkbox = $_POST['idea_checkbox'];
-                            $the_category_id   = $_POST['category_name'];
-
-                            //////////attachmetn code
-
-                            $the_idea_attachment=$_FILES['idea_attachment']['name'];
-                            $the_idea_attachment_temp = $_FILES['idea_attachment']['tmp_name'];
-
-                            move_uploaded_file($the_idea_attachment_temp,"img/$the_idea_attachment");
-                          
-
-                            //attachemtn code kyn
-                            $the_idea_content = mysqli_real_escape_string($connection, $_POST['idea_content']);
-
-
-                            // closure date check
-                            $academic_query = "SELECT * FROM academic_year WHERE academic_id = {$the_academic_id}";
-                            $select_academic_query = mysqli_query($connection, $academic_query);
-                            $row = mysqli_fetch_array($select_academic_query);
-
-                                $academic_start_date = strtotime($row['start_date']);
-                                $academic_closure_date = strtotime($row['closure_date']);
-                                $academic_final_closure_date = strtotime($row['final_closure_date']);
-                                $today_date = strtotime("now");
-
-                                if ($today_date >= $academic_start_date && $today_date <= $academic_closure_date){
-
-                                    $query = "INSERT INTO ideas(idea_checkbox, idea_content, idea_attachment, user_id, category_id, academic_id, idea_date) VALUES ('{$the_idea_checkbox}', '{$the_idea_content}', '{$the_idea_attachment}', '{$the_user_id}', '{$the_category_id}','{$the_academic_id}',now() )";
-                                    $create_post_query = mysqli_query($connection, $query);
-
-                                    if (!$create_post_query) {
-
-                                        die("QUERY FAILED" . mysqli_error($connection));
-
+                                        }
+    
+                                        $the_idea_id = mysqli_insert_id($connection);
+    
+                                        echo "Posted <a href='show_idea_detail.php?i_id={$the_idea_id}'> View Post </a> ";
+    
                                     }
-
-                                    $the_idea_id = mysqli_insert_id($connection);
-
-                                    echo "Posted <a href='show_idea_detail.php?i_id={$the_idea_id}'> View Post </a> ";
-
-                                }
-
-                                else{
-
-                                    echo "<script>alert('You cannot post the ideas after Closure Date But you can still comment on the ideas until final closure date ')</script>";
-
-
-
-                                }
+    
+                                    else{
+    
+                                        echo "<script>alert('You cannot post the ideas after Closure Date But you can still comment on the ideas until final closure date ')</script>";
+    
+    
+    
+                                    }
+                            }
 
                         }
 
-                    }
+
+                    
 
 
                  ?>

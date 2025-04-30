@@ -47,6 +47,7 @@
                         <a class="collapse-item" href="user.php">View All Users</a>
                         <a class="collapse-item" href="user.php?source=view_qa_coordinator">View QA Coordinator</a>
                         <a class="collapse-item" href="user.php?source=add_user">Add User</a>
+                        <a class="collapse-item" href="user.php?source=login_logs">Login Logs</a>
                     </div>
                 </div>
             </li>

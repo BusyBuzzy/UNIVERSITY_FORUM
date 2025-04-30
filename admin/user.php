@@ -54,6 +54,10 @@
                             case 'add_qa_coordinator';
                                 include "include/add_qa_coordinator.php";
                                 break;
+                            
+                            case 'login_logs';
+                                include "include/login_logs.php";
+                                break;
 
 
                             default:

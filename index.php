@@ -27,16 +27,17 @@ if (isset($_POST['login'])) {
             $db_role_id       =  $row['role_id'];
             $db_dept_id       =  $row['dept_id'];
             $db_last_login    =  $row['last_login'];
+            $db_user_status  =  $row['status'];
 
 
             $query            =  "SELECT * FROM roles WHERE role_id = {$db_role_id}";
             $check_role_query =  mysqli_query($connection, $query);
 
+
             while ($row = mysqli_fetch_assoc($check_role_query)) {
 
                 $role_type = $row['role_type'];
             }
-
 
             if ($role_type === 'admin') {
 
@@ -47,6 +48,11 @@ if (isset($_POST['login'])) {
                 $_SESSION['dept_id']     =  $db_dept_id;
                 $user_id = $db_user_id;
 
+                // echo "<pre>";
+                // var_dump($_SERVER);
+                // echo "</pre>";
+                // die();
+            
                 if ($db_last_login == null) {
                     echo "<script>alert('Hello Admin. This is First time Login. Welcome to UniVCT Platform');</script>";
                     echo "<script>window.location='admin/index.php'</script>";
@@ -61,6 +67,22 @@ if (isset($_POST['login'])) {
                     mysqli_query($connection, $update_last_login);
                 }
 
+                $userAgent = $_SERVER['HTTP_USER_AGENT'];
+                $ip = $_SERVER['REMOTE_ADDR'];
+    
+                $sql = "INSERT INTO login_logs (user_id, browser, ip_address) VALUES (?, ?, ?)";
+                $stmt = mysqli_prepare($connection, $sql);
+    
+                if ($stmt) {
+                    mysqli_stmt_bind_param($stmt, "iss", $user_id, $userAgent, $ip);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_close($stmt);
+                } else {
+                    echo "Error preparing statement: " . mysqli_error($connection);
+                }
+    
+    
+
             } else if ($role_type === 'qa_manager') {
 
                 $_SESSION['user_id']     =  $db_user_id;
@@ -68,6 +90,7 @@ if (isset($_POST['login'])) {
                 $_SESSION['user_email']  =  $db_user_email;
                 $_SESSION['role_id']     =  $db_role_id;
                 $_SESSION['dept_id']     =  $db_dept_id;
+
                 $user_id = $db_user_id;
               
                 if ($db_last_login == null) {
@@ -85,6 +108,20 @@ if (isset($_POST['login'])) {
     
                 }
 
+                $userAgent = $_SERVER['HTTP_USER_AGENT'];
+                $ip = $_SERVER['REMOTE_ADDR'];
+    
+                $sql = "INSERT INTO login_logs (user_id, browser, ip_address) VALUES (?, ?, ?)";
+                $stmt = mysqli_prepare($connection, $sql);
+    
+                if ($stmt) {
+                    mysqli_stmt_bind_param($stmt, "iss", $user_id, $userAgent, $ip);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_close($stmt);
+                } else {
+                    echo "Error preparing statement: " . mysqli_error($connection);
+                }
+
 
             } else if ($role_type === 'qa_coordinator') {
 
@@ -93,6 +130,7 @@ if (isset($_POST['login'])) {
                 $_SESSION['user_email']  =  $db_user_email;
                 $_SESSION['role_id']     =  $db_role_id;
                 $_SESSION['dept_id']     =  $db_dept_id;
+
                 $user_id = $db_user_id;
 
                 if ($db_last_login == null) {
@@ -110,16 +148,37 @@ if (isset($_POST['login'])) {
                     mysqli_query($connection, $update_last_login);
     
                 }
+
+                $userAgent = $_SERVER['HTTP_USER_AGENT'];
+                $ip = $_SERVER['REMOTE_ADDR'];
+    
+                $sql = "INSERT INTO login_logs (user_id, browser, ip_address) VALUES (?, ?, ?)";
+                $stmt = mysqli_prepare($connection, $sql);
+    
+                if ($stmt) {
+                    mysqli_stmt_bind_param($stmt, "iss", $user_id, $userAgent, $ip);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_close($stmt);
+                } else {
+                    echo "Error preparing statement: " . mysqli_error($connection);
+                }
                 
             } else {
 
+        
                 $_SESSION['user_id']     =  $db_user_id;
                 $_SESSION['username']    =  $db_username;
                 $_SESSION['user_email']  =  $db_user_email;
                 $_SESSION['role_id']     =  $db_role_id;
                 $_SESSION['dept_id']     =  $db_dept_id;
+                $_SESSION['status']      =  $db_user_status;
                 $user_id = $db_user_id;
                
+                // echo "<pre>";
+                // var_dump($_SESSION);
+                // echo "</pre>";
+                // die();
+            
                 if ($db_last_login == null) {
                     echo "<script>alert('Hello Staff. This is First time Login. Welcome to UniVCT Platform')</script>";
                     echo "<script>window.location='staff/index.php'</script>";
@@ -132,6 +191,20 @@ if (isset($_POST['login'])) {
     
                     $update_last_login = "UPDATE users SET last_login = NOW() WHERE user_id = '$user_id'";
                     mysqli_query($connection, $update_last_login);
+                }
+
+                $userAgent = $_SERVER['HTTP_USER_AGENT'];
+                $ip = $_SERVER['REMOTE_ADDR'];
+    
+                $sql = "INSERT INTO login_logs (user_id, browser, ip_address) VALUES (?, ?, ?)";
+                $stmt = mysqli_prepare($connection, $sql);
+    
+                if ($stmt) {
+                    mysqli_stmt_bind_param($stmt, "iss", $user_id, $userAgent, $ip);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_close($stmt);
+                } else {
+                    echo "Error preparing statement: " . mysqli_error($connection);
                 }
               
             }

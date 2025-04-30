@@ -30,7 +30,7 @@
 
                         <tr>
 
-                            <th>Id</th>
+                            <th>No</th>
                             <th>Username</th>
                             <th>Content</th>
                             <th>Attachment</th>
@@ -50,10 +50,11 @@
                         <?php
                             //select data from ideas table for view all ideas
                             global $connection;
+                            $i=  0;
                             $idea_query  =  mysqli_query($connection, "SELECT * FROM ideas");
 
                                 while($row=mysqli_fetch_array($idea_query)){
-
+                                    $i++;
                                     $idea_id             =  $row['idea_id'];
                                     $user_id             =  $row['user_id'];
                                     $idea_content        =  substr($row['idea_content'],0,30);
@@ -67,7 +68,7 @@
 
                                         echo "<tr>";
 
-                                            echo "<td>$idea_id</td>";
+                                            echo "<td>$i</td>";
 
                                             $select_user    =  mysqli_query($connection, "SELECT * FROM users WHERE user_id = $user_id");
                                             $user_row       =  mysqli_fetch_array($select_user);

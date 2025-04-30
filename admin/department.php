@@ -86,7 +86,7 @@
                                 <table class="table table-bordered table-hover text-center text-dark">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th>Id</th>
+                                            <th>No</th>
                                             <th>Department Name</th>
                                             <th colspan='2'>Option</th>
                                         </tr>
@@ -97,17 +97,17 @@
                                         <?php
                                         //lets select all department name from the database to show in the html form
                                         global $connection;
-
+                                        $i=  0;
                                         $query             =  "SELECT * FROM department";
                                         $select_department =  mysqli_query($connection, $query);
 
                                             while($row = mysqli_fetch_assoc($select_department)){
-                                                                            
+                                                $i++;                        
                                                 $dept_id   =  $row['dept_id'];
                                                 $dept_name =  $row['dept_name'];
 
                                                 echo "<tr>";
-                                                    echo "<td> $dept_id </td>";
+                                                    echo "<td> $i</td>";
                                                     echo "<td> $dept_name </td>";
                                                     echo "<td> <a href='department.php?edit=$dept_id'> <i class='fas fa-edit'></i> </a> </td>";
                                                     echo "<td> <a href='department.php?delete=$dept_id'> <i class='fas fa-trash'></i> </a> </td>";

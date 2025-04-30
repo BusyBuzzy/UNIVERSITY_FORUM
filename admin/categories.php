@@ -95,17 +95,17 @@
                                         <?php 
                                         //lets select all category name from the database to show in the html form
                                         global $connection;
-
+                                        $i=  0;
                                         $query          =  "SELECT * FROM category";
                                         $select_category=  mysqli_query($connection, $query);
 
                                             while($row = mysqli_fetch_assoc($select_category)){
-                                                                            
+                                                $i++;                             
                                                 $category_id   =  $row['category_id'];
                                                 $category_name =  $row['category_name'];
 
                                                     echo "<tr>";
-                                                        echo "<td> $category_id </td>";
+                                                        echo "<td> $i </td>";
                                                         echo "<td> $category_name </td>";
                                                         echo "<td> <a href='categories.php?edit=$category_id'> <i class='fas fa-edit'></i> </a> </td>";
                                                         echo "<td> <a href='categories.php?delete=$category_id'> <i class='fas fa-trash'></i> </a> </td>";

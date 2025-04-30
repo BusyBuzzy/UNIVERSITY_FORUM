@@ -64,7 +64,7 @@
                             <table class="table table-bordered table-hover text-center text-dark">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th>Id</th>
+                                        <!-- <th>Id</th> -->
                                         <th>Department Name</th>
                                         <th>Option</th>
                                     </tr>
@@ -84,7 +84,7 @@
                                     $dept_name = $row['dept_name'];
 
                                     echo "<tr>";
-                                    echo "<td> {$dept_id} </td>";
+                                    // echo "<td> {$dept_id} </td>";
                                     echo "<td> {$dept_name} </td>";
 
                                     echo "<td> <a href='department.php?edit={$dept_id}'> <i class='fas fa-edit'></i> </a> </td>";

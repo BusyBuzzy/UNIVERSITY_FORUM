@@ -23,8 +23,22 @@ Follow the steps below to set up the system on your PC:
    - Open your browser and navigate to:  
      `http://localhost/your_project_folder/index.php`
    - Log in as Admin using the credentials:
-     - Email: `khin@gmail.com`
-     - Password: `123`
+     - Email: `complex@gmail.com`
+     - Password: `complex123`
+
+   - Log in as QA Manager using the credentials:
+     - Email: `manager@gmail.com`
+     - Password: `manager123`
+   
+   - Log in as HR QA Coordinator using the credentials:
+     - Email: `hrcoordinator@gmail.com@gmail.com`
+     - Password: `hrcoordinator123`
+   
+   - Log in as Staff using the credentials:
+     - Email: `staff@gmail.com`
+     - Password: `staff123`
+
+	
 
 4. User Management
    - Only an admin can create user accounts.

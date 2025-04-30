@@ -24,7 +24,7 @@
         <thead class="thead-light">
 
             <tr>
-                <th>Id</th>
+                <th>No</th>
                 <th>Username</th>
                 <th>Date of Birth</th>
                 <th>Gender</th>
@@ -43,11 +43,12 @@
         <?php
         //select from users table to show
         global $connection;
+        $i=  0;
         $query         =  "SELECT * FROM users WHERE dept_id = $session_dept_id AND role_id = 8";
         $select_users  =  mysqli_query($connection, $query);
 
             while($row = mysqli_fetch_assoc($select_users)){
-
+                $i++;
                 $user_id        =  $row['user_id'];
                 $username       =  $row['username'];
                 $user_dob       =  $row['user_dob'];
@@ -61,7 +62,7 @@
 
                     echo "<tr>";
 
-                        echo "<td> $user_id </td>";
+                        echo "<td> $i </td>";
                         echo "<td> $username </td>";
                         echo "<td> $user_dob </td>";
                         echo "<td> $user_gender </td>";

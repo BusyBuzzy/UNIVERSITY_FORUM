@@ -44,7 +44,7 @@
                     $user_password  =  $row['user_password'];
                     $user_role_id   =  $row['role_id'];
                     $user_dept_id   =  $row['dept_id'];
-                    $user_last_login = $row['last_login'];
+                    // $user_last_login = $row['last_login'];
                 }
 
                 ?>
@@ -59,16 +59,16 @@
                         <div class="card-body">
                             <form action="" method="post" class="text-dark">
                                 <!-- last Login -->
-                                <div class="row g-3 align-items-center mb-3">
+                                <!-- <div class="row g-3 align-items-center mb-3">
                                     <div class="col-sm-2">
                                         <label for="address" class="col-form-label">Last Login</label>
                                     </div>
                                     <div class="col-sm-8">
 
-                                        <?php echo $user_last_login; ?>
+
 
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- username -->
                                 <div class="row g-3 align-items-center mb-3">
                                     <div class="col-sm-2">

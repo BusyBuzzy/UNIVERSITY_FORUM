@@ -400,21 +400,19 @@
 
                 </form>
 
-
                 <?php
 
-                //    show-comment
-                $show_comment        =  "SELECT * FROM comments WHERE idea_id = ${the_idea_id}";
-                $show_comment_query  =  mysqli_query($connection, $show_comment);
+                $show_comment = "SELECT * FROM comments WHERE idea_id = {$the_idea_id}";
+                $show_comment_query = mysqli_query($connection, $show_comment);
 
-                    while ($row = mysqli_fetch_assoc($show_comment_query)) {
+                while ($row = mysqli_fetch_assoc($show_comment_query)) {
+                    $comment_content  = $row['comment_content'];
+                    $comment_checkbox = $row['comment_checkbox'];
+                    $comment_user_id  = $row['user_id'];
+                    $comment_idea_id  = $row['idea_id'];
+                    $comment_date     = $row['comment_date'];
+                ?>
 
-                        $comment_content   =  $row['comment_content'];
-                        $comment_checkbox  =  $row['comment_checkbox'];
-                        $comment_user_id   =  $row['user_id'];
-                        $comment_idea_id   =  $row['idea_id'];
-                        $comment_date      =  $row['comment_date'];
-                        ?>
 
                         <div class="card mb-2 mt-2 border-left-info border-info text-dark ml-2">
                             <div class="card-body">

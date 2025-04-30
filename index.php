@@ -26,6 +26,7 @@ if (isset($_POST['login'])) {
             $db_user_password =  $row['user_password'];
             $db_role_id       =  $row['role_id'];
             $db_dept_id       =  $row['dept_id'];
+            $db_last_login    =  $row['last_login'];
 
 
             $query            =  "SELECT * FROM roles WHERE role_id = {$db_role_id}";
@@ -45,10 +46,21 @@ if (isset($_POST['login'])) {
                 $_SESSION['role_id']     =  $db_role_id;
                 $_SESSION['dept_id']     =  $db_dept_id;
                 $user_id = $db_user_id;
-                $update_last_login = "UPDATE users SET last_login = NOW() WHERE user_id = '$user_id'";
-                mysqli_query($connection, $update_last_login);
-                echo "<script>alert('Hello Admin')</script>";
-                echo "<script>window.location='admin/index.php'</script>";
+
+                if ($db_last_login == null) {
+                    echo "<script>alert('Hello Admin. This is First time Login. Welcome to UniVCT Platform');</script>";
+                    echo "<script>window.location='admin/index.php'</script>";
+    
+                    $update_last_login = "UPDATE users SET last_login = NOW() WHERE user_id = '$user_id'";
+                    mysqli_query($connection, $update_last_login);
+                } else {
+                    echo "<script>alert('Hello Admin. Last login: $db_last_login');</script>";
+                    echo "<script>window.location='admin/index.php'</script>";
+    
+                    $update_last_login = "UPDATE users SET last_login = NOW() WHERE user_id = '$user_id'";
+                    mysqli_query($connection, $update_last_login);
+                }
+
             } else if ($role_type === 'qa_manager') {
 
                 $_SESSION['user_id']     =  $db_user_id;
@@ -57,10 +69,23 @@ if (isset($_POST['login'])) {
                 $_SESSION['role_id']     =  $db_role_id;
                 $_SESSION['dept_id']     =  $db_dept_id;
                 $user_id = $db_user_id;
-                $update_last_login = "UPDATE users SET last_login = NOW() WHERE user_id = '$user_id'";
-                mysqli_query($connection, $update_last_login);
-                echo "<script>alert('Hello QA Manager')</script>";
-                echo "<script>window.location='qa_manager/index.php'</script>";
+              
+                if ($db_last_login == null) {
+                    echo "<script>alert('Hello QA Manager. This is First time Login. Welcome to UniVCT Platform')</script>";
+                    echo "<script>window.location='qa_manager/index.php'</script>";
+                
+                    $update_last_login = "UPDATE users SET last_login = NOW() WHERE user_id = '$user_id'";
+                    mysqli_query($connection, $update_last_login);
+                } else {
+                    echo "<script>alert('Hello QA Manager. Last login: $db_last_login')</script>";
+                    echo "<script>window.location='qa_manager/index.php'</script>";
+                
+                    $update_last_login = "UPDATE users SET last_login = NOW() WHERE user_id = '$user_id'";
+                    mysqli_query($connection, $update_last_login);
+    
+                }
+
+
             } else if ($role_type === 'qa_coordinator') {
 
                 $_SESSION['user_id']     =  $db_user_id;
@@ -69,10 +94,23 @@ if (isset($_POST['login'])) {
                 $_SESSION['role_id']     =  $db_role_id;
                 $_SESSION['dept_id']     =  $db_dept_id;
                 $user_id = $db_user_id;
-                $update_last_login = "UPDATE users SET last_login = NOW() WHERE user_id = '$user_id'";
-                mysqli_query($connection, $update_last_login);
-                echo "<script>alert('Hello QA Coordinator')</script>";
-                echo "<script>window.location='qa_coordinator/index.php'</script>";
+
+                if ($db_last_login == null) {
+                    echo "<script>alert('Hello QA Coordinator. This is First time Login. Welcome to UniVCT Platform')</script>";
+                    echo "<script>window.location='qa_coordinator/index.php'</script>";
+    
+                    $update_last_login = "UPDATE users SET last_login = NOW() WHERE user_id = '$user_id'";
+                    mysqli_query($connection, $update_last_login);
+
+                } else {
+                    echo "<script>alert('Hello QA Coordinator. Last login: $db_last_login')</script>";
+                    echo "<script>window.location='qa_coordinator/index.php'</script>";
+    
+                    $update_last_login = "UPDATE users SET last_login = NOW() WHERE user_id = '$user_id'";
+                    mysqli_query($connection, $update_last_login);
+    
+                }
+                
             } else {
 
                 $_SESSION['user_id']     =  $db_user_id;
@@ -81,10 +119,21 @@ if (isset($_POST['login'])) {
                 $_SESSION['role_id']     =  $db_role_id;
                 $_SESSION['dept_id']     =  $db_dept_id;
                 $user_id = $db_user_id;
-                $update_last_login = "UPDATE users SET last_login = NOW() WHERE user_id = '$user_id'";
-                mysqli_query($connection, $update_last_login);
-                echo "<script>alert('Hello Staff')</script>";
-                echo "<script>window.location='staff/index.php'</script>";
+               
+                if ($db_last_login == null) {
+                    echo "<script>alert('Hello Staff. This is First time Login. Welcome to UniVCT Platform')</script>";
+                    echo "<script>window.location='staff/index.php'</script>";
+    
+                    $update_last_login = "UPDATE users SET last_login = NOW() WHERE user_id = '$user_id'";
+                    mysqli_query($connection, $update_last_login);
+                } else {
+                    echo "<script>alert('Hello Staff. Last login: $db_last_login')</script>";
+                    echo "<script>window.location='staff/index.php'</script>";
+    
+                    $update_last_login = "UPDATE users SET last_login = NOW() WHERE user_id = '$user_id'";
+                    mysqli_query($connection, $update_last_login);
+                }
+              
             }
         }
     } else {
@@ -116,8 +165,8 @@ if (isset($_POST['login'])) {
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-800 mb-4">Welcome!</h1>
-                                        <h1 class="h6 text-gray-800 mb-4">Team Complex Platform</h1>
+                                        <h1 class="h4 text-gray-800 mb-4">Welcome to UniVCT!</h1>
+                                        <h1 class="h6 text-gray-800 mb-4">Made by Team Complex</h1>
                                     </div>
                                     <form action="index.php" method="post" class="user">
                                         <div class="form-group">

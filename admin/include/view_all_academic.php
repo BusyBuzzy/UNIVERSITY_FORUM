@@ -3,7 +3,7 @@
     <table class="table table-bordered table-hover text-center text-dark table-responsive-sm table-responsive-xl">
         <thead class="thead-light">
             <tr>
-                <th>Academic Id</th>
+                <th>No</th>
                 <th>Academic Year Name</th>
                 <th>Start Date</th>
                 <th>Closure Date</th>
@@ -19,13 +19,13 @@
         <?php
         //select data from academic year table for show
         global $connection;
-
+        $i=  0;
 
         $query            =  "SELECT * FROM academic_year";
         $select_academic  =  mysqli_query($connection, $query);
 
         while ($row = mysqli_fetch_assoc($select_academic)) {
-
+            $i++;
             $academic_id         =  $row['academic_id'];
             $start_date          =  $row['start_date'];
             $closure_date        =  $row['closure_date'];
@@ -35,7 +35,7 @@
 
             echo "<tr>";
 
-                echo "<td> $academic_id </td>";
+                echo "<td> $i</td>";
                 echo "<td> $academic_year_name </td>";
                 echo "<td> $start_date </td>";
                 echo "<td> $closure_date </td>";
@@ -113,21 +113,21 @@
         $f_c_row = mysqli_fetch_array($select_final_closure_date);
 
         $final_closure_date =  strtotime($f_c_row['final_closure_date']);
-        $today              =  strtotime("now");
+        // $today              =  strtotime("now");
 
-            if ($today>$final_closure_date){
+        //     if ($today>$final_closure_date){
 
-                echo "<script>alert('You cannot active the academic year which final closure data is earlier than today date')</script>";
+        //         echo "<script>alert('You cannot active the academic year which final closure data is earlier than today date')</script>";
 
-            }
-            else{
+        //     }
+        //     else{
 
-                $change_active       =  mysqli_query($connection, "UPDATE academic_year SET action='' WHERE academic_id=$active_academic_id ");
-                $update_active       =  mysqli_query($connection, "UPDATE academic_year SET action= 'active' WHERE academic_id=$action_academic_id ");
-//
-                echo "<script>window.location.href='academic_year.php?source=view_all_academic'</script>";
+        $change_active       =  mysqli_query($connection, "UPDATE academic_year SET action='' WHERE academic_id=$active_academic_id ");
+        $update_active       =  mysqli_query($connection, "UPDATE academic_year SET action= 'active' WHERE academic_id=$action_academic_id ");
+// //
+         echo "<script>window.location.href='academic_year.php?source=view_all_academic'</script>";
 
-            }
+//             }
 
 
 

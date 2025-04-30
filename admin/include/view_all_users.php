@@ -20,11 +20,12 @@
             <?php
 //select the user table from database to show user information
                 global $connection;
+                $i=  0;
                 $query        =  "SELECT * FROM users";
                 $select_users =  mysqli_query($connection, $query);
                 //select data from users table for the table
                     while($row = mysqli_fetch_assoc($select_users)){
-
+                        $i++;
                         $user_id        =  $row['user_id'];
                         $username       =  $row['username'];
                         $user_dob       =  $row['user_dob'];
@@ -38,7 +39,7 @@
 
                         echo "<tr>";
 
-                            echo "<td> $user_id </td>";
+                            echo "<td> $i </td>";
                             echo "<td> $username </td>";
                             echo "<td> $user_dob </td>";
                             echo "<td> $user_gender </td>";
@@ -77,6 +78,7 @@
 
                         echo "</tr>";
                     }
+
              ?>
 
         </tbody>

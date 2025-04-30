@@ -76,7 +76,7 @@ CREATE TABLE `login_logs` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `login_logs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `rating_info` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -105,6 +105,7 @@ CREATE TABLE `users` (
   `dept_id` int NOT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `last_login` datetime DEFAULT NULL,
+  `status` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`user_id`),
   KEY `role_id` (`role_id`),
   KEY `dept_id` (`dept_id`),
@@ -215,7 +216,10 @@ INSERT INTO `login_logs` (`id`, `user_id`, `browser`, `ip_address`, `login_time`
 (19, 69, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', '::1', '2025-04-30 16:43:38', NULL),
 (20, 64, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', '::1', '2025-04-30 16:56:56', '2025-04-30 16:57:06'),
 (21, 67, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', '::1', '2025-04-30 16:57:24', '2025-04-30 17:00:22'),
-(22, 51, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', '::1', '2025-04-30 17:00:33', NULL);
+(22, 51, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', '::1', '2025-04-30 17:00:33', NULL),
+(23, 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', '::1', '2025-04-30 21:18:02', NULL),
+(24, 1, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', '::1', '2025-04-30 23:17:28', NULL),
+(25, 69, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:138.0) Gecko/20100101 Firefox/138.0', '::1', '2025-04-30 23:22:30', '2025-04-30 23:24:03');
 
 INSERT INTO `rating_info` (`id`, `user_id`, `idea_id`, `rating`) VALUES
 (238, 49, 67, 'Like');
@@ -261,44 +265,44 @@ INSERT INTO `roles` (`role_id`, `role_type`) VALUES
 INSERT INTO `roles` (`role_id`, `role_type`) VALUES
 (8, 'staff');
 
-INSERT INTO `users` (`user_id`, `username`, `user_dob`, `user_gender`, `user_phone`, `user_address`, `user_email`, `user_password`, `role_id`, `dept_id`, `created_at`, `last_login`) VALUES
-(1, 'Team Complex', '2000-08-14', 'male', '09123456789', 'Yangon', 'complex@gmail.com', 'complex123', 1, 1, '2025-04-23 23:15:58', '2025-04-30 16:11:24');
-INSERT INTO `users` (`user_id`, `username`, `user_dob`, `user_gender`, `user_phone`, `user_address`, `user_email`, `user_password`, `role_id`, `dept_id`, `created_at`, `last_login`) VALUES
-(2, 'Lynn Myat Bhone Htut', '2000-05-05', 'male', '09123456789', 'Yangon', 'lmbh@gmail.com', 'lmbh', 8, 29, '2025-04-23 23:15:58', '2025-04-30 11:36:31');
-INSERT INTO `users` (`user_id`, `username`, `user_dob`, `user_gender`, `user_phone`, `user_address`, `user_email`, `user_password`, `role_id`, `dept_id`, `created_at`, `last_login`) VALUES
-(3, 'Wai Yan Htun', '2000-06-06', 'male', '09123456789', 'Yangon', 'wyh@gmail.com', 'wyh', 8, 27, '2025-04-23 23:15:58', '2025-04-30 01:36:31');
-INSERT INTO `users` (`user_id`, `username`, `user_dob`, `user_gender`, `user_phone`, `user_address`, `user_email`, `user_password`, `role_id`, `dept_id`, `created_at`, `last_login`) VALUES
-(4, 'Lwin', '2000-04-12', 'male', '09123456789', 'Yangon', 'lmo@gmail.com', 'lmo', 8, 1, '2025-04-23 23:15:58', '2025-04-30 13:36:31'),
-(5, 'Wai Yam Lin', '2000-05-23', 'male', '09123456789', 'Yangon', 'wyl@gmail.com', 'wyl', 8, 27, '2025-04-23 23:15:58', '2025-04-30 15:39:41'),
-(6, 'Nant Theint Nadi Soe', '2000-10-22', 'female', '09123456789', 'Yangon', 'ntns@gmail.com', 'ntns', 8, 30, '2025-04-23 23:15:58', '2025-04-30 08:36:31'),
-(7, 'Aye Thant Kyi', '2000-02-17', 'female', '09123456789', 'Yangon', 'atk@gmail.com', 'atk', 8, 30, '2025-04-23 23:15:58', '2025-04-29 11:36:31'),
-(8, 'May Phyu Phyu Aung', '2000-08-19', 'female', '09123456789', 'Yangon', 'mppa@gmail.com', 'mppa', 8, 29, '2025-04-23 23:15:58', '2025-04-28 11:36:31'),
-(9, 'Test Admin', '2002-03-12', 'female', '09123456789', 'Mandalay', 'admin@gmail.com', 'admin123', 1, 1, '2025-04-27 18:15:58', '2025-04-28 16:33:03'),
-(10, 'QA Manager', '1985-01-26', 'male', '096833556', 'Ahlone, yangon', 'manager@gmail.com', 'manager123', 2, 1, '2025-04-23 23:15:58', '2025-04-30 15:39:08'),
-(11, 'HR Department', '1984-05-22', 'male', '0934793895', 'Insein, yangon', 'hrcoordinator@gmail.com', 'hrcoordinator123', 7, 1, '2025-04-23 23:15:58', '2025-04-29 00:24:47'),
-(12, 'Engineering Department', '1983-06-29', 'male', '095487244', 'ahlone, yangon', 'engcoordinator@gmail.com', 'engcoordinator123', 7, 27, '2025-04-23 23:15:58', NULL),
-(13, 'Medical Department', '1982-08-30', 'male', '09726563', 'North dagon, yangon', 'medcoordinator@gmail.com', 'medcoordinator123', 7, 28, '2025-04-23 23:15:58', NULL),
-(14, 'Art Department', '1980-03-19', 'male', '09335338', 'Hlaing, yangon', 'artcoordinator@gmail.com', 'artcoordinator123', 7, 29, '2025-04-23 23:15:58', NULL),
-(15, 'Accounting Department', '1983-04-28', 'male', '09885378', 'Kabaraye, yangon.', 'acccoordinator@gmail.com', 'acccordinator123', 7, 30, '2025-04-23 23:15:58', NULL),
-(16, 'Staff', '2000-05-11', 'female', '09123456788', 'Yangon', 'staff@gmail.com', 'staff123', 8, 30, '2025-04-23 23:15:58', '2025-04-30 11:09:13'),
-(49, 'Hazel', '2000-08-25', 'female', '09500099', 'mya kan thar 2nd street, ygn', 'hazel@gmail.com', 'hazel', 8, 1, '2025-04-23 23:15:58', '2025-04-30 15:50:33'),
-(50, 'Zin', '2000-08-01', 'female', '09899822', 'kamayut', 'zin@gmail.com', 'zin', 8, 1, '2025-04-23 23:15:58', NULL),
-(51, 'Zen', '1999-01-01', 'male', '09278822', 'Kyouk Myoung', 'zen@gmail.com', 'zen', 8, 27, '2025-04-23 23:15:58', '2025-04-30 17:00:33'),
-(52, 'Jorge', '1999-02-02', 'male', '092277333', 'Hlaing ', 'jorge@gmail.com', 'jorge', 8, 27, '2025-04-23 23:15:58', NULL),
-(53, 'Axel ', '1998-08-08', 'male', '092223881', 'sagaing', 'aung@gmail.com', 'aung', 8, 27, '2025-04-23 23:15:58', NULL),
-(54, 'Jennie', '1995-01-01', 'female', '09886543', 'Hlaing, yangon', 'jennie@gmail.com', 'jennie', 8, 28, '2025-04-23 23:15:58', NULL),
-(55, 'Rose', '1994-03-03', 'female', '09335789', 'Myaynigone, yangon', 'rose@gmail.com', 'rose', 8, 28, '2025-04-23 23:15:58', NULL),
-(56, 'Irene', '1994-02-02', 'female', '09253744', 'Shwe pyi thar, yangon', 'irene@gmail.com', 'irene', 8, 28, '2025-04-23 23:15:58', NULL),
-(57, 'Liam', '1992-02-02', 'male', '09284442', 'Taunggyi', 'liam@gmail.com', 'liam', 8, 29, '2025-04-23 23:15:58', NULL),
-(58, 'Oliver', '1991-05-05', 'female', '09278422', 'sanchaung, yangon', 'oliver@gmail.com', 'oliver', 8, 29, '2025-04-23 23:15:58', NULL),
-(59, 'Lucas', '1990-04-07', 'male', '09232442', 'Kamayut, yangon', 'lucas@gmail.com', 'lucas', 8, 29, '2025-04-23 23:15:58', NULL),
-(60, 'Emma', '1990-01-28', 'female', '097728473', 'Sanchaung, yangon', 'emma@gmail.com', 'emma', 8, 30, '2025-04-23 23:15:58', NULL),
-(61, 'Lily', '1992-08-08', 'female', '092244677', 'Hledan, yangon', 'lily@gmail.com', 'lily', 8, 30, '2025-04-23 23:15:58', NULL),
-(62, 'Melody', '1989-02-28', 'female', '096652822', 'Shwe pyi thar, yangon', 'melody@gmail.com', 'melody', 8, 30, '2025-04-23 23:15:58', '2025-04-30 11:30:55'),
-(64, 'Staff Testing', '2000-02-14', 'male', '09123456789', 'Yankin,Yangon', 'staff@gmail.com', 'staff', 8, 27, '2025-04-27 18:20:58', '2025-04-30 16:56:56'),
-(65, 'Test QAC', '2004-02-22', 'female', '09123456789', 'Yangon', 'coordinator@gmail.com', 'coordinator123', 7, 31, '2025-04-28 23:53:42', '2025-04-30 11:41:32'),
-(67, 'Test Staff', '2003-02-07', 'female', '09123456789', 'Mandalay', 'test@gmail.com', 'test123', 8, 31, '2025-04-29 00:39:01', '2025-04-30 16:57:24'),
-(69, 'test ', '2000-01-20', 'male', '0912321321', 'Shan', 'abc@gmail.com', 'abc', 8, 31, '2025-04-30 15:55:30', '2025-04-30 16:43:38');
+INSERT INTO `users` (`user_id`, `username`, `user_dob`, `user_gender`, `user_phone`, `user_address`, `user_email`, `user_password`, `role_id`, `dept_id`, `created_at`, `last_login`, `status`) VALUES
+(1, 'Team Complex', '2000-08-14', 'male', '09123456789', 'Yangon', 'complex@gmail.com', 'complex123', 1, 1, '2025-04-23 23:15:58', '2025-04-30 23:17:27', 0);
+INSERT INTO `users` (`user_id`, `username`, `user_dob`, `user_gender`, `user_phone`, `user_address`, `user_email`, `user_password`, `role_id`, `dept_id`, `created_at`, `last_login`, `status`) VALUES
+(2, 'Lynn Myat Bhone Htut', '2000-05-05', 'male', '09123456789', 'Yangon', 'lmbh@gmail.com', 'lmbh', 8, 29, '2025-04-23 23:15:58', '2025-04-30 11:36:31', 0);
+INSERT INTO `users` (`user_id`, `username`, `user_dob`, `user_gender`, `user_phone`, `user_address`, `user_email`, `user_password`, `role_id`, `dept_id`, `created_at`, `last_login`, `status`) VALUES
+(3, 'Wai Yan Htun', '2000-06-06', 'male', '09123456789', 'Yangon', 'wyh@gmail.com', 'wyh', 8, 27, '2025-04-23 23:15:58', '2025-04-30 01:36:31', 0);
+INSERT INTO `users` (`user_id`, `username`, `user_dob`, `user_gender`, `user_phone`, `user_address`, `user_email`, `user_password`, `role_id`, `dept_id`, `created_at`, `last_login`, `status`) VALUES
+(4, 'Lwin', '2000-04-12', 'male', '09123456789', 'Yangon', 'lmo@gmail.com', 'lmo', 8, 1, '2025-04-23 23:15:58', '2025-04-30 13:36:31', 0),
+(5, 'Wai Yam Lin', '2000-05-23', 'male', '09123456789', 'Yangon', 'wyl@gmail.com', 'wyl', 8, 27, '2025-04-23 23:15:58', '2025-04-30 15:39:41', 0),
+(6, 'Nant Theint Nadi Soe', '2000-10-22', 'female', '09123456789', 'Yangon', 'ntns@gmail.com', 'ntns', 8, 30, '2025-04-23 23:15:58', '2025-04-30 08:36:31', 0),
+(7, 'Aye Thant Kyi', '2000-02-17', 'female', '09123456789', 'Yangon', 'atk@gmail.com', 'atk', 8, 30, '2025-04-23 23:15:58', '2025-04-29 11:36:31', 0),
+(8, 'May Phyu Phyu Aung', '2000-08-19', 'female', '09123456789', 'Yangon', 'mppa@gmail.com', 'mppa', 8, 29, '2025-04-23 23:15:58', '2025-04-28 11:36:31', 0),
+(9, 'Test Admin', '2002-03-12', 'female', '09123456789', 'Mandalay', 'admin@gmail.com', 'admin123', 1, 1, '2025-04-27 18:15:58', '2025-04-28 16:33:03', 0),
+(10, 'QA Manager', '1985-01-26', 'male', '096833556', 'Ahlone, yangon', 'manager@gmail.com', 'manager123', 2, 1, '2025-04-23 23:15:58', '2025-04-30 15:39:08', 0),
+(11, 'HR Department', '1984-05-22', 'male', '0934793895', 'Insein, yangon', 'hrcoordinator@gmail.com', 'hrcoordinator123', 7, 1, '2025-04-23 23:15:58', '2025-04-29 00:24:47', 0),
+(12, 'Engineering Department', '1983-06-29', 'male', '095487244', 'ahlone, yangon', 'engcoordinator@gmail.com', 'engcoordinator123', 7, 27, '2025-04-23 23:15:58', NULL, 0),
+(13, 'Medical Department', '1982-08-30', 'male', '09726563', 'North dagon, yangon', 'medcoordinator@gmail.com', 'medcoordinator123', 7, 28, '2025-04-23 23:15:58', NULL, 0),
+(14, 'Art Department', '1980-03-19', 'male', '09335338', 'Hlaing, yangon', 'artcoordinator@gmail.com', 'artcoordinator123', 7, 29, '2025-04-23 23:15:58', NULL, 0),
+(15, 'Accounting Department', '1983-04-28', 'male', '09885378', 'Kabaraye, yangon.', 'acccoordinator@gmail.com', 'acccordinator123', 7, 30, '2025-04-23 23:15:58', NULL, 0),
+(16, 'Staff', '2000-05-11', 'female', '09123456788', 'Yangon', 'staff@gmail.com', 'staff123', 8, 30, '2025-04-23 23:15:58', '2025-04-30 11:09:13', 0),
+(49, 'Hazel', '2000-08-25', 'female', '09500099', 'mya kan thar 2nd street, ygn', 'hazel@gmail.com', 'hazel', 8, 1, '2025-04-23 23:15:58', '2025-04-30 15:50:33', 0),
+(50, 'Zin', '2000-08-01', 'female', '09899822', 'kamayut', 'zin@gmail.com', 'zin', 8, 1, '2025-04-23 23:15:58', NULL, 0),
+(51, 'Zen', '1999-01-01', 'male', '09278822', 'Kyouk Myoung', 'zen@gmail.com', 'zen', 8, 27, '2025-04-23 23:15:58', '2025-04-30 17:00:33', 0),
+(52, 'Jorge', '1999-02-02', 'male', '092277333', 'Hlaing ', 'jorge@gmail.com', 'jorge', 8, 27, '2025-04-23 23:15:58', NULL, 0),
+(53, 'Axel ', '1998-08-08', 'male', '092223881', 'sagaing', 'aung@gmail.com', 'aung', 8, 27, '2025-04-23 23:15:58', NULL, 0),
+(54, 'Jennie', '1995-01-01', 'female', '09886543', 'Hlaing, yangon', 'jennie@gmail.com', 'jennie', 8, 28, '2025-04-23 23:15:58', NULL, 0),
+(55, 'Rose', '1994-03-03', 'female', '09335789', 'Myaynigone, yangon', 'rose@gmail.com', 'rose', 8, 28, '2025-04-23 23:15:58', NULL, 0),
+(56, 'Irene', '1994-02-02', 'female', '09253744', 'Shwe pyi thar, yangon', 'irene@gmail.com', 'irene', 8, 28, '2025-04-23 23:15:58', NULL, 0),
+(57, 'Liam', '1992-02-02', 'male', '09284442', 'Taunggyi', 'liam@gmail.com', 'liam', 8, 29, '2025-04-23 23:15:58', NULL, 0),
+(58, 'Oliver', '1991-05-05', 'female', '09278422', 'sanchaung, yangon', 'oliver@gmail.com', 'oliver', 8, 29, '2025-04-23 23:15:58', NULL, 0),
+(59, 'Lucas', '1990-04-07', 'male', '09232442', 'Kamayut, yangon', 'lucas@gmail.com', 'lucas', 8, 29, '2025-04-23 23:15:58', NULL, 0),
+(60, 'Emma', '1990-01-28', 'female', '097728473', 'Sanchaung, yangon', 'emma@gmail.com', 'emma', 8, 30, '2025-04-23 23:15:58', NULL, 0),
+(61, 'Lily', '1992-08-08', 'female', '092244677', 'Hledan, yangon', 'lily@gmail.com', 'lily', 8, 30, '2025-04-23 23:15:58', NULL, 0),
+(62, 'Melody', '1989-02-28', 'female', '096652822', 'Shwe pyi thar, yangon', 'melody@gmail.com', 'melody', 8, 30, '2025-04-23 23:15:58', '2025-04-30 11:30:55', 0),
+(64, 'Staff Testing', '2000-02-14', 'male', '09123456789', 'Yankin,Yangon', 'staff@gmail.com', 'staff', 8, 27, '2025-04-27 18:20:58', '2025-04-30 16:56:56', 0),
+(65, 'Test QAC', '2004-02-22', 'female', '09123456789', 'Yangon', 'coordinator@gmail.com', 'coordinator123', 7, 31, '2025-04-28 23:53:42', '2025-04-30 11:41:32', 0),
+(67, 'Test Staff', '2003-02-07', 'female', '09123456789', 'Mandalay', 'test@gmail.com', 'test123', 8, 31, '2025-04-29 00:39:01', '2025-04-30 16:57:24', 0),
+(69, 'test ', '2000-01-20', 'male', '0912321321', 'Shan', 'abc@gmail.com', 'abc', 8, 31, '2025-04-30 15:55:30', '2025-04-30 23:22:30', 1);
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

@@ -12,6 +12,7 @@
                 <th>Email</th>
                 <th>Role</th>
                 <th>Department</th>
+                <th>Status</th>
                 <th colspan="2">Option</th>
             </tr>
         </thead>
@@ -36,6 +37,7 @@
                         $user_password  =  $row['user_password'];
                         $role_id        =  $row['role_id'];
                         $dept_id        =  $row['dept_id'];
+                        $user_status    =  $row['status'];
 
                         echo "<tr>";
 
@@ -69,7 +71,13 @@
                                     $dept_name =  $row['dept_name'];
 
                             echo "<td> $dept_name </td>";
-
+                            
+                            if($user_status == '0'){
+                                echo "<td> <a class='btn btn-sm rounded-pill btn-success text-white' href='include/user_status_update.php?status=active&u_id=$user_id'>active</a></td>";
+                            } else {
+                                echo "<td> <a class='btn btn-sm rounded-pill btn-danger text-white' href='include/user_status_update.php?status=locked&u_id=$user_id'>locked</a></td>";
+                            }
+                            
                             echo "<td><a href='user.php?source=edit_user&u_id=$user_id'> <i class='fas fa-edit'></i> </a> </td>";
 
                             echo "<td><a href='user.php?delete=$user_id'> <i class='fas fa-trash'></i> </a> </td>";

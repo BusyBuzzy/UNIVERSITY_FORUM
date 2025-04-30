@@ -5,7 +5,11 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-
+                    <?php            
+                    if(isset($_SESSION['status']) && $_SESSION['status'] == '1'){
+                        echo "<h4 class='text-danger font-weight-bold'>Your Account is restricted!</h4>";
+                    }
+                    ?>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">

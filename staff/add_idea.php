@@ -31,13 +31,15 @@
                     $user_id   =  $_SESSION['user_id'];
                     $username  =  $_SESSION['username'];
                     $dept_id   =  $_SESSION['dept_id'];
+                    $status = $_SESSION['status'];
 
                 }
                 //if condition for blank
                 if (isset($_POST['create_idea'])) {
-
-
-                    if (isset($_POST['category_name']) == "") {
+                    if($status == '1'){
+                        echo "<script>alert('This account is restricted. You cannot post idea')</script>";
+                        echo "<script>window.location='add_idea.php'</script>";
+                    } else if (isset($_POST['category_name']) == "") {
 
                         echo "<script>alert('Related Category must be choose')</script>";
 
@@ -89,7 +91,7 @@
                                 $the_idea_id  =  mysqli_insert_id($connection);
 
                                 //select data for sending mail
-                                $select_department_id =  mysqli_query($connection, "SELECT * FROM users WHERE user_id = $the_user_id");
+                                /* $select_department_id =  mysqli_query($connection, "SELECT * FROM users WHERE user_id = $the_user_id");
                                 $row                  =  mysqli_fetch_array($select_department_id);
                                 $the_department_id    =  $row['dept_id'];
 
@@ -100,22 +102,22 @@
                                 $select_role          =  mysqli_query ($connection, "SELECT * FROM roles WHERE role_type = 'qa_coordinator'");
                                 $row                  =  mysqli_fetch_array($select_role);
                                 $the_role_id          =  $row['role_id'];
-
-                                $select_user          =  mysqli_query($connection,"SELECT * FROM users WHERE role_id = 7 AND dept_id = $the_department_id");
+*/
+                                $select_user          =  mysqli_query($connection,"SELECT * FROM users WHERE user_id = $user_id");
                                 $user_row             =  mysqli_fetch_array($select_user);
 
-                                $user_num_row         =  mysqli_num_rows($select_user);
+                                $user_num_row         =  mysqli_num_rows($select_user); 
 
                                     if($user_num_row > 0){
 
-                                        $username    =  $user_row['username'];
-                                        $user_email  =  $user_row['user_email'];
+                                        /* $username    =  $user_row['username'];
+                                        $user_email  =  $user_row['user_email']; */
 
         //                        mail function start
-                                        $subject     =  "Post Idea Notification";
+                                        /* $subject     =  "Post Idea Notification";
                                         $body        =  "Dear QA Coordinator, one of the staff from your" . " " . "$the_department_name". " " . "posted an ideas";
 
-                                            mail($user_email,$subject,$body);
+                                            mail($user_email,$subject,$body); */
 
         //                        mail function end
                                         echo "<center>

@@ -316,10 +316,15 @@
                         $the_idea_id = $_GET['i_id'];
 
                         $session_user_id    =  $_SESSION['user_id'];
+                        $status = $_SESSION['status'];
                         $comment_content    =  $_POST['idea_comment_content'];
                         $comment_checkbox   =  $_POST['comment_checkbox'];
 
-
+                        if ($status == '1') {
+                            echo "<script>alert('This account is restricted. You cannot comment.')</script>";
+                            echo "<script>window.location='show_idea_detail.php?i_id= $the_idea_id '</script>";
+                        } else {
+                            
                         $select_idea        =  mysqli_query($connection, "SELECT * FROM ideas WHERE idea_id = {$the_idea_id}");
                         $row                =  mysqli_fetch_array($select_idea);
                         $idea_academic_id   =  $row['academic_id'];
@@ -365,6 +370,7 @@
                                 echo "<script>alert('You cannot comment after the final closure date')</script>";
 
                             }
+                        }
 
                     }
 
@@ -402,7 +408,7 @@
 
                 <?php
 
-                $show_comment = "SELECT * FROM comments WHERE idea_id = {$the_idea_id}";
+                $show_comment = "SELECT * FROM comments as c, users as u WHERE c.user_id = u.user_id AND c.idea_id = {$the_idea_id} AND u.status = '0' ORDER BY comment_id DESC";
                 $show_comment_query = mysqli_query($connection, $show_comment);
 
                 while ($row = mysqli_fetch_assoc($show_comment_query)) {

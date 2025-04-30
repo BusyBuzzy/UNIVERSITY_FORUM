@@ -68,7 +68,7 @@
                     $count = ceil($count / $per_page);
 
                     //the below code are for latest comments
-                    $select_comments = mysqli_query($connection, "SELECT * FROM comments ORDER BY comment_id DESC LIMIT $page_1, $per_page");
+                    $select_comments = mysqli_query($connection, "SELECT * FROM comments as c, users as u WHERE c.user_id = u.user_id AND u.status = '0' ORDER BY comment_id DESC LIMIT $page_1, $per_page");
                     while($row = mysqli_fetch_array($select_comments)){
 
                         $comment_content  =  $row['comment_content'];

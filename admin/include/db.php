@@ -3,7 +3,7 @@
 $db = [
     'db_host' => 'localhost',
     'db_user' => 'root',
-    'db_pass' => 'creation11111',
+    'db_pass' => '',
     'db_name' => 'tc_ewsd1'
 ];
 

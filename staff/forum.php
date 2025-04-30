@@ -177,7 +177,7 @@
                         } else {
 
                         $count        =  ceil($count / $per_page);
-                        $ideas_query  =  "SELECT * FROM ideas LIMIT $page_1, $per_page";
+                        $ideas_query  =  "SELECT * FROM ideas as i, users as u WHERE i.user_id = u.user_id AND u.status = '0' ORDER BY idea_id DESC LIMIT $page_1, $per_page";
                     //page paginatin end
                         $select_post  =  mysqli_query($connection, $ideas_query);
                     //crate while function for picking data from dataabase

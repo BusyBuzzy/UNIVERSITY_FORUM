@@ -13,7 +13,6 @@
                 <th>Role</th>
                 <th>Department</th>
                 <th>Status</th>
-                <th colspan="2">Option</th>
             </tr>
         </thead>
 
@@ -78,9 +77,6 @@
                                 echo "<td> <a class='btn btn-sm rounded-pill btn-danger text-white' href='include/user_status_update.php?status=locked&u_id=$user_id'>locked</a></td>";
                             }
                             
-                            echo "<td><a href='user.php?source=edit_user&u_id=$user_id'> <i class='fas fa-edit'></i> </a> </td>";
-
-                            echo "<td><a href='user.php?delete=$user_id'> <i class='fas fa-trash'></i> </a> </td>";
 
                                 }
 
@@ -93,19 +89,4 @@
 
 </table>
 
-<?php //delete code
-
-    if (isset($_GET['delete'])) {
-        
-        $the_user_id = $_GET['delete'];
-
-        $delete_user_query =  mysqli_query($connection, "DELETE FROM users WHERE user_id = $the_user_id");
-
-        $delete_ideas      = mysqli_query($connection, "DELETE FROM ideas WHERE user_id = $the_user_id");
-
-        echo "<script>window.location.href='user.php'</script>";
-
-    }
-
- ?>
 </div>

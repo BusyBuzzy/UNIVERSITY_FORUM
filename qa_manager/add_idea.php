@@ -112,10 +112,10 @@
                                         $user_email  =  $user_row['user_email'];
 
         //                        mail function start
-                                        $subject     =  "Post Idea Notification";
-                                        $body        =  "Dear QA Coordinator, one of the staff from your" . " " . "$the_department_name". " " . "posted an ideas";
+                                        // $subject     =  "Post Idea Notification";
+                                        // $body        =  "Dear QA Coordinator, one of the staff from your" . " " . "$the_department_name". " " . "posted an ideas";
 
-                                            mail($user_email,$subject,$body);
+                                        //     mail($user_email,$subject,$body);
 
         //                        mail function end
                                         echo "<center>

@@ -359,9 +359,9 @@
 
     //                        mail function start
 
-                                $subject  = "Comment Notification";
-                                $body     = "Dear" . " " . $user_username . "," . "your ideas got comment";
-                                mail($user_email,$subject,$body);
+                            // $subject  = "Comment Notification";
+                            // $body     = "Dear" . " " . $user_username . "," . "your ideas got comment";
+                            // mail($user_email,$subject,$body);
 
     //                        mail function end
 
